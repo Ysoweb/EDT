@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معاينة صفحة المشروع</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+        }
+        #controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            width: 80%;
+            position: relative;
+        }
+        #control-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .button {
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            min-width: 120px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #004d40;
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        .rotate-button {
+            background-color: #0288d1;
+        }
+        .rotate-button:hover {
+            background-color: #01579b;
+        }
+        .rotate-button:active {
+            transform: scale(0.98);
+        }
+        .reset-button {
+            background-color: #c2185b;
+        }
+        .reset-button:hover {
+            background-color: #880e4f;
+        }
+        .reset-button:active {
+            transform: scale(0.98);
+        }
+        .fullscreen-button {
+            background-color: #d32f2f;
+        }
+        .fullscreen-button:hover {
+            background-color: #b71c1c;
+        }
+        .fullscreen-button:active {
+            transform: scale(0.98);
+        }
+        .slider-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .slider {
+            width: 120px;
+        }
+        .resizable {
+            position: relative;
+            display: inline-block;
+            background-color: #ffffff;
+            border: 2px solid #00796b;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .resizable .resizer {
+            width: 20px;
+            height: 20px;
+            background: #00796b;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: se-resize;
+        }
+        .draggable {
+            position: absolute;
+            border: 1px dashed #00796b;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <div id="control-buttons">
+            <button class="button" onclick="resizeIframe()">تحديث الحجم</button>
+            <button class="rotate-button" onclick="rotateIframe()">تدوير</button>
+            <button class="rotate-button" onclick="rotateIframe90()">تدوير 90°</button>
+            <button class="rotate-button" onclick="rotateIframe180()">تدوير 180°</button>
+            <button class="rotate-button" onclick="rotateIframe270()">تدوير 270°</button>
+            <button class="button" onclick="decreaseTextSize()">تصغير النص</button>
+            <button class="button" onclick="increaseTextSize()">تكبير النص</button>
+            <button class="fullscreen-button" onclick="toggleFullscreen()">وضع ملء الشاشة</button>
+            <button class="reset-button" onclick="resetView()">إعادة تعيين</button>
+            <button class="button" onclick="captureScreenshot()">التقاط صورة</button>
+        </div>
+        <div class="slider-container">
+            <label for="width">عرض:</label>
+            <input type="range" id="width-slider" class="slider" min="300" max="1920" value="800" oninput="updateWidthInput(this.value)">
+            <input type="number" id="width" value="800" min="300" max="1920" oninput="updateWidthSlider(this.value)">
+        </div>
+        <div class="slider-container">
+            <label for="height">طول:</label>
+            <input type="range" id="height-slider" class="slider" min="300" max="1080" value="600" oninput="updateHeightInput(this.value)">
+            <input type="number" id="height" value="600" min="300" max="1080" oninput="updateHeightSlider(this.value)">
+        </div>
+        <div>
+            <label for="preset-sizes">الأحجام الشائعة:</label>
+            <select id="preset-sizes" onchange="applyPresetSize()">
+                <option value="">اختر الحجم</option>
+                <option value="375,667">هاتف (375x667)</option>
+                <option value="768,1024">تابلت (768x1024)</option>
+                <option value="1440,900">لابتوب (1440x900)</option>
+                <option value="1920,1080">شاشة كاملة (1920x1080)</option>
+            </select>
+        </div>
+        <div class="slider-container">
+            <label for="file-url">رابط الملف:</label>
+            <input type="text" id="file-url" placeholder="أدخل رابط الملف هنا" oninput="updateIframe()">
+            <button class="button" onclick="updateIframe()">تحميل</button>
+        </div>
+    </div>
+    <div id="iframe-container" class="resizable">
+        <iframe id="preview" src="/templatemo_568_digimedia/homepage_3.html"></iframe>
+        <div class="resizer"></div>
+        <div id="draggable" class="draggable"></div>
+    </div>
+
+    <script>
+        function resizeIframe() {
+            var iframe = document.getElementById('preview');
+            var width = document.getElementById('width').value;
+            var height = document.getElementById('height').value;
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+        }
+
+        function applyPresetSize() {
+            var preset = document.getElementById('preset-sizes').value;
+            if (preset) {
+                var [width, height] = preset.split(',');
+                document.getElementById('width').value = width;
+                document.getElementById('height').value = height;
+                document.getElementById('width-slider').value = width;
+                document.getElementById('height-slider').value = height;
+                resizeIframe();
+            }
+        }
+
+        function rotateIframe() {
+            var iframe = document.getElementById('preview');
+            var width = iframe.style.width;
+            var height = iframe.style.height;
+            iframe.style.width = height;
+            iframe.style.height = width;
+            document.getElementById('width').value = parseInt(height);
+            document.getElementById('height').value = parseInt(width);
+            document.getElementById('width-slider').value = parseInt(height);
+            document.getElementById('height-slider').value = parseInt(width);
+        }
+
+        function rotateIframe90() {
+            var iframe = document.getElementById('preview');
+            iframe.style.transform = 'rotate(90deg)';
+        }
+
+        function rotateIframe180() {
+            var iframe = document.getElementById('preview');
+            iframe.style.transform = 'rotate(180deg)';
+        }
+
+        function rotateIframe270() {
+            var iframe = document.getElementById('preview');
+            iframe.style.transform = 'rotate(270deg)';
+        }
+
+        function updateWidthInput(value) {
+            document.getElementById('width').value = value;
+            resizeIframe();
+        }
+
+        function updateHeightInput(value) {
+            document.getElementById('height').value = value;
+            resizeIframe();
+        }
+
+        function updateWidthSlider(value) {
+            document.getElementById('width-slider').value = value;
+            resizeIframe();
+        }
+
+        function updateHeightSlider(value) {
+            document.getElementById('height-slider').value = value;
+            resizeIframe();
+        }
+
+        function decreaseTextSize() {
+            var iframe = document.getElementById('preview').contentWindow.document.body;
+            var currentSize = parseFloat(window.getComputedStyle(iframe).fontSize);
+            iframe.styleiframe.style.fontSize = (currentSize - 1) + 'px';
+        }
+
+        function increaseTextSize() {
+            var iframe = document.getElementById('preview').contentWindow.document.body;
+            var currentSize = parseFloat(window.getComputedStyle(iframe).fontSize);
+            iframe.style.fontSize = (currentSize + 1) + 'px';
+        }
+
+        function toggleFullscreen() {
+            var iframe = document.getElementById('preview');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { /* Firefox */
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function resetView() {
+            document.getElementById('width').value = '800';
+            document.getElementById('height').value = '600';
+            document.getElementById('width-slider').value = '800';
+            document.getElementById('height-slider').value = '600';
+            document.getElementById('preview').style.width = '800px';
+            document.getElementById('preview').style.height = '600px';
+            document.getElementById('preview').style.transform = 'rotate(0deg)';
+            var iframe = document.getElementById('preview').contentWindow.document.body;
+            iframe.style.fontSize = '16px';
+        }
+
+        function captureScreenshot() {
+            var iframe = document.getElementById('preview');
+            html2canvas(iframe.contentWindow.document.body).then(function(canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'screenshot.png';
+                link.click();
+            });
+        }
+
+        function updateIframe() {
+            var url = document.getElementById('file-url').value;
+            var iframe = document.getElementById('preview');
+            iframe.src = url;
+        }
+
+        const resizer = document.querySelector('.resizer');
+        const iframeContainer = document.getElementById('iframe-container');
+        const draggable = document.getElementById('draggable');
+
+        resizer.addEventListener('mousedown', initResize);
+        draggable.addEventListener('mousedown', initDrag);
+
+        function initResize(e) {
+            window.addEventListener('mousemove', resize);
+            window.addEventListener('mouseup', stopResize);
+        }
+
+        function resize(e) {
+            iframeContainer.style.width = e.clientX - iframeContainer.getBoundingClientRect().left + 'px';
+            iframeContainer.style.height = e.clientY - iframeContainer.getBoundingClientRect().top + 'px';
+            resizeIframe();
+        }
+
+        function stopResize() {
+            window.removeEventListener('mousemove', resize);
+            window.removeEventListener('mouseup', stopResize);
+        }
+
+        function initDrag(e) {
+            window.addEventListener('mousemove', drag);
+            window.addEventListener('mouseup', stopDrag);
+        }
+
+        function drag(e) {
+            iframeContainer.style.left = e.clientX - iframeContainer.offsetWidth / 2 + 'px';
+            iframeContainer.style.top = e.clientY - iframeContainer.offsetHeight / 2 + 'px';
+        }
+
+        function stopDrag() {
+            window.removeEventListener('mousemove', drag);
+            window.removeEventListener('mouseup', stopDrag);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            iframeContainer.style.position = 'absolute';
+            iframeContainer.style.left = '50%';
+            iframeContainer.style.top = '50%';
+            iframeContainer.style.transform = 'translate(-50%, -50%)';
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</body>
+</html>

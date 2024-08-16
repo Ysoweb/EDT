@@ -1,1 +1,156 @@
 
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترحيب بالمستخدم</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 2em;
+            z-index: 10;
+            animation: fadeOut 7s forwards;
+        }
+        .balloon, .star {
+            position: absolute;
+            bottom: -50px;
+            width: 30px;
+            height: 40px;
+            border-radius: 50%;
+            animation: rise 7s linear infinite;
+        }
+        .balloon:nth-child(1) {
+            left: 10%;
+            background-color: red;
+        }
+        .balloon:nth-child(2) {
+            left: 20%;
+            background-color: blue;
+            animation-delay: 1s;
+        }
+        .balloon:nth-child(3) {
+            left: 30%;
+            background-color: green;
+            animation-delay: 2s;
+        }
+        .balloon:nth-child(4) {
+            left: 40%;
+            background-color: yellow;
+            animation-delay: 3s;
+        }
+        .balloon:nth-child(5) {
+            left: 50%;
+            background-color: purple;
+            animation-delay: 4s;
+        }
+        .balloon:nth-child(6) {
+            left: 60%;
+            background-color: orange;
+            animation-delay: 1.5s;
+        }
+        .balloon:nth-child(7) {
+            left: 70%;
+            background-color: pink;
+            animation-delay: 2.5s;
+        }
+        .balloon:nth-child(8) {
+            left: 80%;
+            background-color: cyan;
+            animation-delay: 3.5s;
+        }
+        .balloon:nth-child(9) {
+            left: 90%;
+            background-color: magenta;
+            animation-delay: 0.5s;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation-duration: 7s;
+        }
+        .star:nth-child(10) {
+            left: 15%;
+        }
+        .star:nth-child(11) {
+            left: 35%;
+            animation-delay: 1s;
+        }
+        .star:nth-child(12) {
+            left: 55%;
+            animation-delay: 2s;
+        }
+        .star:nth-child(13) {
+            left: 75%;
+            animation-delay: 3s;
+        }
+        .star:nth-child(14) {
+            left: 95%;
+            animation-delay: 4s;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">
+       مرحباً بك في موقعنا!
+       لتعلم البرمجة </div>
+       <h2>python</h2>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://ysoweb.github.io/EDT/";
+        }, 5000);
+    </script>
+</body>
+</html>

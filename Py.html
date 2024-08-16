@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أساسيات بايثون</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace;
+            position: relative;
+        }
+        .copy-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .copy-button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-radius: 10px 10px 0 0;
+        }
+        .code-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>أساسيات بايثون</h1>
+        <p>تعلم أساسيات لغة بايثون مع شرح مفصل للأكواد</p>
+    </header>
+    <div class="container">
+        <div class="section">
+            <h2>1. المتغيرات</h2>
+            <div class="code-section">
+                <pre><code># مثال على المتغيرات في بايثون
+message = "مرحبا بالعالم!"  # نص
+number = 42  # عدد صحيح
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>المتغيرات هي أماكن لتخزين البيانات في الذاكرة.</p>
+        </div>
+        <div class="section">
+            <h2>2. الجمل الشرطية</h2>
+            <div class="code-section">
+                <pre><code># مثال على الجمل الشرطية في بايثون
+if number > 20:
+    print("العدد أكبر من 20")
+else:
+    print("العدد 20 أو أقل")
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تُستخدم الجمل الشرطية لاتخاذ قرارات بناءً على شروط معينة.</p>
+        </div>
+        <div class="section">
+            <h2>3. الحلقات التكرارية</h2>
+            <div class="code-section">
+                <pre><code># مثال على الحلقات التكرارية في بايثون
+for i in range(5):
+    print("العدد هو:", i)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تُستخدم الحلقات التكرارية لتكرار مجموعة من الأوامر عدة مرات.</p>
+        </div>
+        <div class="section">
+            <h2>4. الدوال</h2>
+            <div class="code-section">
+                <pre><code># مثال على الدوال في بايثون
+def greet(name):
+    return "مرحبا، " + name + "!"
+
+print(greet("أحمد"))
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>الدوال هي مجموعة من الأوامر التي يمكن استخدامها عدة مرات في أماكن مختلفة من البرنامج.</p>
+        </div>
+        <div class="section">
+            <h2>5. المصفوفات (القوائم)</h2>
+            <div class="code-section">
+                <pre><code># مثال على القوائم في بايثون
+fruits = ["تفاح", "موز", "برتقال"]
+print(fruits[1])  # يطبع "موز"
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>المصفوفات أو القوائم هي هياكل بيانات تُستخدم لتخزين مجموعات من القيم.</p>
+        </div>
+        <div class="section">
+            <h2>6. الكائنات (القواميس)</h2>
+            <div class="code-section">
+                <pre><code># مثال على القواميس في بايثون
+person = {
+    "name": "علي",
+    "age": 30
+}
+print(person["name"])  # يطبع "علي"
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>الكائنات أو القواميس هي هياكل بيانات تُستخدم لتخزين البيانات معًا في شكل مفاتيح وقيم.</p>
+        </div>
+        <div class="section">
+            <h2>7. التعامل مع الأخطاء</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع الأخطاء في بايثون
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("حدث خطأ: قسمة على صفر")
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يتم التعامل مع الأخطاء باستخدام كتل `try` و `except`.</p>
+        </div>
+        <div class="section">
+            <h2>8. إدخال البيانات من المستخدم</h2>
+            <div class="code-section">
+                <pre><code># مثال على إدخال البيانات من المستخدم في بايثون
+name = input("أدخل اسمك: ")
+print("مرحبا، " + name + "!")
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك إدخال البيانات من المستخدم باستخدام دالة `input`.</p>
+        </div>
+        <div class="section">
+            <h2>9. قراءة وكتابة الملفات</h2>
+            <div class="code-section">
+                <pre><code># مثال على قراءة وكتابة الملفات في بايثون
+# كتابة نص إلى ملف
+with open("example.txt", "w") as file:
+    file.write("مرحبا بالعالم!")
+
+# قراءة النص من الملف
+with open("example.txt", "r") as file:
+    content = file.read()
+    print(content)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك قراءة وكتابة الملفات باستخدام دوال `open`, `read`, و `write`.</p>
+        </div>
+        <div class="section">
+            <h2>10. استيراد المكتبات</h2>
+            <div class="code-section">
+                <pre><code># مثال على استيراد المكتبات في بايثون
+import math
+
+print(math.sqrt(16))  # يطبع الجذر التربيعي للعدد 16
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استيراد المكتبات لاستخدام الوظائف المضافة في بايثون.</p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const code = button.previousElementSibling.textContent;
+            const textArea = document.createElement('textarea');
+            textArea.value = code;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            button.textContent = 'تم نسخ الكود!';
+            setTimeout(() => {
+                button.textContent = 'نسخ الكود';
+            },2000);
+        }
+    </script>
+</body>
+</html>
+<div class="section">
+            <h2>11. القوائم المركبة</h2>
+            <div class="code-section">
+                <pre><code># مثال على القوائم المركبة في بايثون
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print(matrix[1][2])  # يطبع الرقم 6
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>القوائم المركبة هي قوائم تحتوي على قوائم أخرى، وتستخدم لتخزين البيانات في هيكل ثنائي الأبعاد أو أكثر.</p>
+        </div>
+        <div class="section">
+            <h2>12. معالجة البيانات النصية</h2>
+            <div class="code-section">
+                <pre><code># مثال على معالجة البيانات النصية في بايثون
+text = "  مرحبا بالعالم!  "
+print(text.strip())  # يطبع "مرحبا بالعالم!"
+print(text.upper())  # يطبع "مرحبا بالعالم!".upper()
+print(text.lower())  # يطبع "مرحبا بالعالم!".lower()
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استخدام الدوال `strip`, `upper`, و `lower` لمعالجة النصوص.</p>
+        </div>
+        <div class="section">
+            <h2>13. التعليقات في الكود</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعليقات في بايثون
+# هذا تعليق أحادي السطر
+
+"""
+هذا تعليق متعدد الأسطر
+يمكن أن يمتد على عدة أسطر
+"""
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>التعليقات تُستخدم لكتابة ملاحظات حول الكود، ويمكن أن تكون أحادية السطر أو متعددة الأسطر.</p>
+        </div>
+        <div class="section">
+            <h2>14. استخدام الحلقات التكرارية مع القوائم</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام الحلقات التكرارية مع القوائم
+fruits = ["تفاح", "موز", "برتقال"]
+for fruit in fruits:
+    print(fruit)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استخدام الحلقات للتكرار على عناصر القائمة وتنفيذ أوامر معينة لكل عنصر.</p>
+        </div>
+        <div class="section">
+            <h2>15. التعامل مع استثناءات متعددة</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع استثناءات متعددة
+try:
+    result = int("a")
+except ValueError:
+    print("حدث خطأ: قيمة غير صحيحة")
+except Exception as e:
+    print("حدث خطأ غير متوقع:", e)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك التعامل مع أنواع مختلفة من الاستثناءات باستخدام عدة كتل `except`.</p>
+        </div>
+        <div class="section">
+            <h2>16. استخدام الدوال اللامتزامنة</h2>
+            <div class="code-section">
+                <pre><code># مثال على الدوال اللامتزامنة في بايثون
+import asyncio
+
+async def greet():
+    await asyncio.sleep(1)
+    print("مرحبا بالعالم!")
+
+asyncio.run(greet())
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>الدوال اللامتزامنة تُستخدم لتنفيذ العمليات غير المتزامنة مثل التعامل مع التأخيرات.</p>
+        </div>
+        <div class="section">
+            <h2>17. استخدام الدوال المجهولة (lambda)</h2>
+            <div class="code-section">
+                <pre><code># مثال على الدوال المجهولة (lambda) في بايثون
+add = lambda x, y: x + y
+print(add(5, 3))  # يطبع 8
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>الدوال المجهولة تُستخدم لكتابة دوال بسيطة في سطر واحد.</p>
+        </div>
+        <div class="section">
+            <h2>18. استخدام مكتبة `datetime`</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة datetime في بايثون
+from datetime import datetime
+
+now = datetime.now()
+print("التاريخ والوقت الحالي:", now)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استخدام مكتبة `datetime` للتعامل مع التواريخ والأوقات.</p>
+        </div>
+        <div class="section">
+            <h2>19. إنشاء واستدعاء الكائنات</h2>
+            <div class="code-section">
+                <pre><code># مثال على إنشاء واستدعاء الكائنات في بايثون
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        return f"مرحبا، أنا {self.name} وعُمري {self.age} سنة."
+
+person = Person("سارة", 25)
+print(person.greet())
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك إنشاء كائنات باستخدام الفئات (classes) واستدعاء الدوال المعرّفة فيها.</p>
+        </div>
+        <div class="section">
+            <h2>20. التعامل مع ملفات JSON</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع ملفات JSON في بايثون
+import json
+
+data = {
+    "name": "أحمد",
+    "age": 30
+}
+
+# كتابة بيانات JSON إلى ملف
+with open("data.json", "w") as file:
+    json.dump(data, file)
+
+# قراءة بيانات JSON من ملف
+with open("data.json", "r") as file:
+    loaded_data = json.load(file)
+    print(loaded_data)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استخدام مكتبة `json` للتعامل مع بيانات JSON في بايثون.</p>
+        </div>
+    </div>
+    <div class="section">
+            <h2>21. إنشاء ملفات واستيرادها</h2>
+            <div class="code-section">
+                <pre><code># مثال على إنشاء ملف واستيراده في بايثون
+# إنشاء ملف (example.py)
+# ------------------------------------
+# def say_hello():
+#     return "مرحبا من example.py!"
+
+# ------------------------------------
+# استيراد واستخدام الدالة
+# ------------------------------------
+from example import say_hello
+
+print(say_hello())
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك إنشاء ملفات بايثون واستيراد الوظائف منها باستخدام جملة `import`. في المثال، أنشأنا دالة في ملف منفصل واستوردناها لاستخدامها.</p>
+        </div>
+        <div class="section">
+            <h2>22. استخدام التعبيرات المنتظمة</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام التعبيرات المنتظمة في بايثون
+import re
+
+text = "رقم الهاتف: 123-456-7890"
+pattern = r'\d{3}-\d{3}-\d{4}'
+match = re.search(pattern, text)
+
+if match:
+    print("تم العثور على رقم الهاتف:", match.group())
+else:
+    print("لم يتم العثور على رقم الهاتف")
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تستخدم التعبيرات المنتظمة للبحث عن أنماط محددة في النصوص. في المثال، نبحث عن نمط رقم هاتف في النص باستخدام مكتبة `re`.</p>
+        </div>
+        <div class="section">
+            <h2>23. التعامل مع استثناءات متعددة</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع استثناءات متعددة في بايثون
+try:
+    result = int("abc")  # محاولة تحويل نص غير صحيح إلى عدد
+except ValueError:
+    print("خطأ: قيمة غير صحيحة!")
+except Exception as e:
+    print("خطأ غير متوقع:", e)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>في هذا المثال، نتعامل مع استثناءات مختلفة باستخدام كتل `except` متعددة. نلتقط استثناء `ValueError` لمشكلة تحويل النصوص، وأيضاً نستدعي `Exception` لالتقاط أي خطأ غير متوقع.</p>
+        </div>
+        <div class="section">
+            <h2>24. استخدام القوائم والفلاتر</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام القوائم والفلاتر في بايثون
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print("الأرقام الزوجية:", even_numbers)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>يمكنك استخدام الدالة `filter` لتصفية العناصر من قائمة بناءً على شرط معين. في المثال، نستخدم `lambda` لتصفية الأرقام الزوجية فقط.</p>
+        </div>
+        <div class="section">
+            <h2>25. استخدام الدوال المتكررة (Recursive Functions)</h2>
+            <div class="code-section">
+                <pre><code># مثال على الدوال المتكررة في بايثون
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print("العدد التراكمي لـ 5 هو:", factorial(5))
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>الدوال المتكررة تستدعي نفسها لحل مشكلة أصغر. في المثال، نحسب القيمة التراكمية للعدد باستخدام الدالة `factorial` التي تستدعي نفسها حتى تصل إلى الحالة الأساسية.</p>
+        </div>
+        <div class="section">
+            <h2>26. استخدام مكتبة `requests` للوصول إلى API</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة requests للوصول إلى API في بايثون
+import requests
+
+response = requests.get("https://api.github.com")
+if response.status_code == 200:
+    print("الاستجابة:", response.json())
+else:
+    print("حدث خطأ:", response.status_code)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تستخدم مكتبة `requests` للوصول إلى API وإجراء طلبات HTTP. في المثال، نرسل طلب GET إلى API GitHub ونتحقق من حالة الاستجابة.</p>
+        </div>
+        <div class="section">
+            <h2>27. استخدام قواعد البيانات SQLite</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام قواعد البيانات SQLite في بايثون
+import sqlite3
+
+# الاتصال بقاعدة البيانات (أو إنشائها إذا لم تكن موجودة)
+conn = sqlite3.connect("example.db")
+cursor = conn.cursor()
+
+# إنشاء جدول
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)''')
+
+# إدخال بيانات
+cursor.execute("INSERT INTO users (name, age) VALUES ('علي', 28)")
+conn.commit()
+
+# استعلام البيانات
+cursor.execute("SELECT * FROM users")
+print("البيانات في قاعدة البيانات:", cursor.fetchall())
+
+# إغلاق الاتصال
+conn.close()
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تستخدم مكتبة `sqlite3` للتعامل مع قواعد البيانات SQLite. في المثال، نخلق قاعدة بيانات، نضيف بيانات، ثم نقوم باستعلام البيانات.</p>
+        </div>
+        <div class="section">
+            <h2>28. استخدام مكتبة `matplotlib` للرسم البياني</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة matplotlib للرسم البياني في بايثون
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+
+plt.plot(x, y, marker='o')
+plt.title("رسم بياني بسيط")
+plt.xlabel("المحور السيني")
+plt.ylabel("المحور الصادي")
+plt.grid(True)
+plt.show()
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+            </div>
+            <p>تستخدم مكتبة `matplotlib` لإنشاء الرسوم البيانية في بايثون. في المثال، نرسم منحنى بسيط ونضيف عنوانًا ومحاورًا إلى الرسم البياني.</p>
+        </div>
+        <div class="section">
+            <h2>29. قراءة وإدخال بيانات من Excel</h2>
+            <div class="code-section">
+                <pre><code># مثال على قراءة وإدخال بيانات من Excel باستخدام مكتبة openpyxl
+from openpyxl import Workbook, load_workbook
+
+# إنشاء ملف Excel
+wb = Workbook()
+ws = wb.active
+ws['A1'] = "اسم"
+ws['B1'] = "عمر"
+ws.append(["سارة", 29])
+wb.save("example.xlsx")
+
+# قراءة ملف Excel
+wb = load_workbook("example.xlsx")
+ws = wb.active
+for row in ws.iter_rows(values_only=True):
+    print(row)
+</code></pre>
+                <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button<p>جابة.</p>
+        </div>
+      
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أساسيات البرمجة بلغة بايثون</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .code-section {
+            position: relative;
+        }
+        pre {
+            background: #e8e8e8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .copy-button, .view-button, .video-button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .copy-button:hover, .view-button:hover, .video-button:hover {
+            background: #0056b3;
+        }
+        .video-button {
+            background: #28a745;
+        }
+        .video-button:hover {
+            background: #1e7e34;
+        }
+    </style>
+    <script>
+        function copyCode(button) {
+            const code = button.previousElementSibling.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'تم النسخ!';
+                setTimeout(() => button.textContent = 'نسخ الكود', 2000);
+            });
+        }
+
+        function viewExplanation(button) {
+            const code = button.previousElementSibling.textContent;
+            alert("للاطلاع على شرح الكود: " + code);
+        }
+
+        function viewVideo() {
+            window.location.href = "https://t.me/abmhad";  // استبدل برابط التليجرام المناسب
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- الأساسيات -->
+        <div class="section">
+            <h2>30. استخدام مكتبة `requests` لإرسال طلبات HTTP</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة requests لإرسال طلب HTTP GET
+import requests
+
+response = requests.get('https://api.example.com/data')
+print("الاستجابة:", response.text)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `requests` لإرسال طلبات HTTP. في المثال، نرسل طلب GET إلى API ونطبع الاستجابة.</p>
+        </div>
+        <div class="section">
+            <h2>31. استخدام مكتبة `pandas` لتحليل البيانات</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة pandas لتحليل البيانات
+import pandas as pd
+
+# إنشاء DataFrame
+data = {
+    'اسم': ['أحمد', 'مريم', 'علي'],
+    'عمر': [30, 25, 35]
+}
+df = pd.DataFrame(data)
+
+# عرض DataFrame
+print(df)
+
+# تصفية البيانات
+filtered_df = df[df['عمر'] > 30]
+print("البيانات بعد التصفية:")
+print(filtered_df)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `pandas` لتحليل البيانات وإدارتها. في المثال، ننشئ DataFrame ونقوم بتصفية البيانات بناءً على شرط معين.</p>
+        </div>
+        <div class="section">
+            <h2>32. استخدام مكتبة `tkinter` لإنشاء واجهات المستخدم</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة tkinter لإنشاء واجهة مستخدم بسيطة
+import tkinter as tk
+
+def greet():
+    label.config(text="مرحبا، " + entry.get())
+
+app = tk.Tk()
+app.title("واجهة المستخدم البسيطة")
+
+label = tk.Label(app, text="أدخل اسمك:")
+label.pack()
+
+entry = tk.Entry(app)
+entry.pack()
+
+button = tk.Button(app, text="ترحيب", command=greet)
+button.pack()
+
+app.mainloop()
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `tkinter` لإنشاء واجهات المستخدم الرسومية في بايثون. في المثال، ننشئ نافذة تحتوي على مدخل نصي وزر لترحيب المستخدم.</p>
+        </div>
+        <div class="section">
+            <h2>33. التعامل مع بيانات CSV</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع بيانات CSV باستخدام مكتبة csv
+import csv
+
+# كتابة بيانات إلى ملف CSV
+with open("data.csv", "w", newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["اسم", "عمر"])
+    writer.writerow(["سارة", 28])
+    writer.writerow(["محمد", 22])
+
+# قراءة بيانات من ملف CSV
+with open("data.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `csv` لقراءة وكتابة بيانات CSV. في المثال، نكتب بيانات إلى ملف CSV ثم نقرأ البيانات منه.</p>
+        </div>
+        <div class="section">
+            <h2>34. التفاعل مع نظام الملفات</h2>
+            <div class="code-section">
+                <pre><code># مثال على التفاعل مع نظام الملفات باستخدام مكتبة os
+import os
+
+# عرض الملفات في الدليل الحالي
+files = os.listdir('.')
+print("الملفات في الدليل الحالي:", files)
+
+# إنشاء مجلد جديد
+os.makedirs('new_directory', exist_ok=True)
+print("تم إنشاء مجلد جديد")
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `os` للتفاعل مع نظام الملفات. في المثال، نعرض الملفات في الدليل الحالي ونقوم بإنشاء مجلد جديد.</p>
+        </div>
+        <!-- يمكنك إضافة المزيد من الأقسام هنا بنفس النمط -->
+    </div>
+</body>
+</html>
+<!-- الأساسيات -->
+        <div class="section">
+            <h2>30. استخدام مكتبة `requests` لإرسال طلبات HTTP</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة requests لإرسال طلب HTTP GET
+import requests
+
+response = requests.get('https://api.example.com/data')
+print("الاستجابة:", response.text)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `requests` لإرسال طلبات HTTP. في المثال، نرسل طلب GET إلى API ونطبع الاستجابة.</p>
+        </div>
+        <div class="section">
+            <h2>31. استخدام مكتبة `pandas` لتحليل البيانات</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة pandas لتحليل البيانات
+import pandas as pd
+
+# إنشاء DataFrame
+data = {
+    'اسم': ['أحمد', 'مريم', 'علي'],
+    'عمر': [30, 25, 35]
+}
+df = pd.DataFrame(data)
+
+# عرض DataFrame
+print(df)
+
+# تصفية البيانات
+filtered_df = df[df['عمر'] > 30]
+print("البيانات بعد التصفية:")
+print(filtered_df)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `pandas` لتحليل البيانات وإدارتها. في المثال، ننشئ DataFrame ونقوم بتصفية البيانات بناءً على شرط معين.</p>
+        </div>
+        <div class="section">
+            <h2>32. استخدام مكتبة `tkinter` لإنشاء واجهات المستخدم</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة tkinter لإنشاء واجهة مستخدم بسيطة
+import tkinter as tk
+
+def greet():
+    label.config(text="مرحبا، " + entry.get())
+
+app = tk.Tk()
+app.title("واجهة المستخدم البسيطة")
+
+label = tk.Label(app, text="أدخل اسمك:")
+label.pack()
+
+entry = tk.Entry(app)
+entry.pack()
+
+button = tk.Button(app, text="ترحيب", command=greet)
+button.pack()
+
+app.mainloop()
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `tkinter` لإنشاء واجهات المستخدم الرسومية في بايثون. في المثال، ننشئ نافذة تحتوي على مدخل نصي وزر لترحيب المستخدم.</p>
+        </div>
+        <div class="section">
+            <h2>33. التعامل مع بيانات CSV</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع بيانات CSV باستخدام مكتبة csv
+import csv
+
+# كتابة بيانات إلى ملف CSV
+with open("data.csv", "w", newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["اسم", "عمر"])
+    writer.writerow(["سارة", 28])
+    writer.writerow(["محمد", 22])
+
+# قراءة بيانات من ملف CSV
+with open("data.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `csv` لقراءة وكتابة بيانات CSV. في المثال، نكتب بيانات إلى ملف CSV ثم نقرأ البيانات منه.</p>
+        </div>
+        <div class="section">
+            <h2>34. التفاعل مع نظام الملفات</h2>
+            <div class="code-section">
+                <pre><code># مثال على التفاعل مع نظام الملفات باستخدام مكتبة os
+import os
+
+# عرض الملفات في الدليل الحالي
+files = os.listdir('.')
+print("الملفات في الدليل الحالي:", files)
+
+# إنشاء مجلد جديد
+os.makedirs('new_directory', exist_ok=True)
+print("تم إنشاء مجلد جديد")
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `os` للتفاعل مع نظام الملفات. في المثال، نعرض الملفات في الدليل الحالي ونقوم بإنشاء مجلد جديد.</p>
+        </div>
+        
+        <div class="section">
+            <h2>35. التعامل مع JSON في بايثون</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع بيانات JSON باستخدام مكتبة json
+import json
+
+# بيانات JSON كـ string
+json_data = '{"name": "أحمد", "age": 30}'
+
+# تحويل JSON إلى dict
+data = json.loads(json_data)
+print("البيانات المحوّلة:", data)
+
+# تحويل dict إلى JSON
+json_string = json.dumps(data, ensure_ascii=False, indent=4)
+print("البيانات كـ JSON:")
+print(json_string)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `json` للتعامل مع بيانات JSON. في المثال، نحول JSON إلى dict ونحول dict إلى JSON مع تنسيق.</p>
+        </div>
+        <div class="section">
+            <h2>36. استخدام `datetime` للتعامل مع التواريخ والأوقات</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة datetime للتعامل مع التواريخ والأوقات
+from datetime import datetime
+
+# الحصول على التاريخ والوقت الحالي
+now = datetime.now()
+print("الوقت الحالي:", now)
+
+# تنسيق التاريخ والوقت
+formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
+print("التاريخ والوقت المنسق:", formatted_date)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `datetime` للتعامل مع التواريخ والأوقات. في المثال، نحصل على الوقت الحالي وننسقه بطريقة محددة.</p>
+        </div>
+        <div class="section">
+            <h2>37. استخدام مكتبة `matplotlib` لرسم الرسوم البيانية</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة matplotlib لرسم رسم بياني بسيط
+import matplotlib.pyplot as plt
+
+# بيانات الرسم البياني
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+
+# إنشاء الرسم البياني
+plt.plot(x, y, marker='o')
+plt.title('رسم بياني بسيط')
+plt.xlabel('المحور السيني')
+plt.ylabel('المحور الصادي')
+plt.grid(True)
+plt.show()
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `matplotlib` لرسم الرسوم البيانية. في المثال، نرسم رسمًا بيانيًا بسيطًا مع عنوان ومحاور مميزة.</p>
+        </div>
+        <div class="section">
+            <h2>38. استخدام `sqlite3` للتعامل مع قواعد بيانات SQLite</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة sqlite3 للتعامل مع قواعد بيانات SQLite
+import sqlite3
+
+# إنشاء اتصال بقاعدة البيانات
+conn = sqlite3.connect('example.db')
+cursor = conn.cursor()
+
+# إنشاء جدول
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)''')
+
+# إدخال بيانات
+cursor.execute('''INSERT INTO users (name, age) VALUES (?, ?)''', ('سارة', 28))
+
+# استعلام البيانات
+cursor.execute('''SELECT * FROM users''')
+rows = cursor.fetchall()
+print("البيانات من قاعدة البيانات:")
+for row in rows:
+    print(row)
+
+# إغلاق الاتصال
+conn.close()
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `sqlite3` للتعامل مع قواعد بيانات SQLite. في المثال، ننشئ جدولًا، ندخل بيانات، ونقوم باستعلام البيانات من القاعدة.</p>
+        </div>
+        <div class="section">
+            <h2>39. استخدام مكتبة `secrets` لتوليد أرقام عشوائية آمنة</h2>
+            <div class="code-section">
+                <pre><code># مثال على استخدام مكتبة secrets لتوليد أرقام عشوائية آمنة
+import secrets
+
+# توليد رقم عشوائي
+random_number = secrets.randbelow(100)
+print("رقم عشوائي:", random_number)
+
+# توليد رمز عشوائي
+random_token = secrets.token_hex(16)
+print("رمز عشوائي:", random_token)
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `secrets` لتوليد أرقام عشوائية ورموز عشوائية بطريقة آمنة. في المثال، نولد رقمًا عشوائيًا ورمزًا عشوائيًا.</p>
+        </div>
+        <div class="section">
+            <h2>40. التعامل مع المتغيرات البيئية باستخدام مكتبة `os`</h2>
+            <div class="code-section">
+                <pre><code># مثال على التعامل مع المتغيرات البيئية باستخدام مكتبة os
+import os
+
+# الحصول على متغير بيئي
+home_directory = os.getenv('HOME', 'غير محدد')
+print("الدليل الرئيسي:", home_directory)
+
+# تعيين متغير بيئي
+os.environ['MY_VARIABLE'] = 'قيمة'
+print("القيمة المعينة لمتغير MY_VARIABLE:", os.environ['MY_VARIABLE'])
+</code></pre>
+                <div class="button-group">
+                    <button class="copy-button" onclick="copyCode(this)">نسخ الكود</button>
+                 
+                    <button class="video-button" onclick="viewVideo()">مشاهدة الفيديو</button>
+                </div>
+            </div>
+            <p>تستخدم مكتبة `os` للتعامل مع المتغيرات البيئية. في المثال، نحصل على قيمة متغير بيئي معين ونقوم بتعيين قيمة لمتغير بيئي جديد.</p>
+        </div>
+        

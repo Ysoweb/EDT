@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار بايثون</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            flex: 1;
+        }
+        h1 {
+            color: #f5f5f5;
+        }
+        .question, .answers {
+            margin: 20px 0;
+        }
+        .answers label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results, #timer, #test-id {
+            margin-top: 20px;
+        }
+        #timer, #test-id {
+            color: #d3d3d3;
+        }
+        footer {
+            background-color: #2c2c2c;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            color: #cccccc;
+        }
+        footer .buttons {
+            margin-top: 10px;
+        }
+        footer button {
+            margin: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .error {
+            color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>اختبار بايثون</h1>
+        <div id="quiz-container">
+            <div id="quiz"></div>
+            <div class="error" id="error-message"></div>
+            <button id="next" style="display:none;">التالي</button>
+            <button id="submit" style="display:none;">إرسال</button>
+            <div id="results"></div>
+            <div id="timer">الوقت المتبقي: <span id="time">60</span> ثانية</div>
+            <div id="test-id"></div>
+        </div>
+    </div>
+    <footer>
+        حقوق النشر © مصطفى - تليجرام: @lilzr
+        <div class="buttons">
+            <button onclick="window.location.href='https://t.me/lilzr'">اتصل بالمطور</button>
+            <button onclick="window.location.href='https://example.com/course'">شراء كورس البرمجة</button>
+        </div>
+    </footer>
+    <script>
+        const quizData = [
+            {
+                question: "ما هي الكلمة المفتاحية المستخدمة لتعريف دالة في بايثون؟",
+                a: "function",
+                b: "def",
+                c: "define",
+                d: "func",
+                correct: "b"
+            },
+            {
+                question: "أي من هذه المتغيرات يُستخدم لتخزين قيمة منطقية؟",
+                a: "bool",
+                b: "int",
+                c: "string",
+                d: "float",
+                correct: "a"
+            },
+            {
+                question: "ما هي وظيفة 'len()' في بايثون؟",
+                a: "إنشاء قائمة",
+                b: "معرفة عدد العناصر في قائمة",
+                c: "إضافة عنصر إلى قائمة",
+                d: "حذف عنصر من قائمة",
+                correct: "b"
+            },
+            {
+                question: "أي من الدوال التالية تُستخدم لتحويل سلسلة نصية إلى رقم صحيح؟",
+                a: "str()",
+                b: "float()",
+                c: "int()",
+                d: "bool()",
+                correct: "c"
+            },
+            {
+                question: "كيف يمكنك تعريف قائمة تحتوي على الأرقام 1، 2، 3؟",
+                a: "[1, 2, 3]",
+                b: "(1, 2, 3)",
+                c: "{1, 2, 3}",
+                d: "<1, 2, 3>",
+                correct: "a"
+            },
+            {
+                question: "ما هي الكلمة المفتاحية المستخدمة لإنهاء حلقة في بايثون؟",
+                a: "exit",
+                b: "stop",
+                c: "break",
+                d: "end",
+                correct: "c"
+            },
+            {
+                question: "أي نوع من البيانات يُستخدم لتخزين النصوص في بايثون؟",
+                a: "float",
+                b: "str",
+                c: "int",
+                d: "bool",
+                correct: "b"
+            },
+            {
+                question: "ما هو ناتج العملية '3 ** 2' في بايثون؟",
+                a: "6",
+                b: "9",
+                c: "5",
+                d: "8",
+                correct: "b"
+            },
+            {
+                question: "ما هي وظيفة الكلمة المفتاحية 'import' في بايثون؟",
+                a: "إدخال مكتبة أو حزمة",
+                b: "إنشاء ملف جديد",
+                c: "تصدير ملف",
+                d: "إنشاء دالة جديدة",
+                correct: "a"
+            },
+            {
+                question: "ما هي الكلمة المفتاحية المستخدمة لتكرار حلقة إلى ما لا نهاية؟",
+                a: "while True",
+                b: "for ever",
+                c: "loop forever",
+                d: "repeat",
+                correct: "a"
+            },
+            {
+                question: "ما هي صيغة الجملة الشرطية في بايثون؟",
+                a: "if condition { }",
+                b: "if condition:",
+                c: "if (condition)",
+                d: "if: condition",
+                correct: "b"
+            },
+            {
+                question: "ما هي الطريقة الصحيحة لإضافة عنصر جديد إلى قائمة؟",
+                a: "list.append(item)",
+                b: "list.add(item)",
+                c: "list.insert(item)",
+                d: "list.push(item)",
+                correct: "a"
+            },
+            {
+                question: "ما هو نوع البيانات الناتج من العملية '5 / 2'؟",
+                a: "int",
+                b: "str",
+                c: "bool",
+                d: "float",
+                correct: "d"
+            },
+            {
+                question: "ما هي الكلمة المفتاحية المستخدمة لتعريف حلقة تكرار؟",
+                a: "for",
+                b: "repeat",
+                c: "loop",
+                d: "iterate",
+                correct: "a"
+            },
+            {
+                question: "كيف يمكنك طباعة قيمة متغير في بايثون؟",
+                a: "print var",
+                b: "echo(var)",
+                c: "print(var)",
+                d: "disp var",
+                correct: "c"
+            },
+            {
+                question: "ما هو نوع البيانات الذي يُستخدم لتخزين القيم المنطقية؟",
+                a: "bool",
+                b: "int",
+                c: "float",
+                d: "list",
+                correct: "a"
+            },
+            {
+                question: "أي نوع من المتغيرات يُمكن أن يخزن القيم من أنواع متعددة؟",
+                a: "list",
+                b: "dict",
+                c: "int",
+                d: "float",
+                correct: "a"
+            },
+            {
+                question: "كيف يمكنك تعريف دالة بسيطة في بايثون؟",
+                a: "function myFunction() {}",
+                b: "def myFunction():",
+                c: "func myFunction()",
+                d: "function: myFunction",
+                correct: "b"
+            },
+            {
+                question: "ما هي وظيفة 'range()' في بايثون؟",
+                a: "توليد قائمة",
+                b: "تحديد نوع المتغير",
+                c: "توليد قائمة من الأرقام",
+                d: "حذف عنصر من قائمة",
+                correct: "c"
+            },
+            {
+                question: "ما هو ناتج العملية '10 % 3' في بايثون؟",
+                a: "1",
+                b: "3",
+                c: "2",
+                d: "0",
+                correct: "a"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let timer = 200;
+        let timerInterval;
+        const quizID = `اختبار ID-${Math.floor(Math.random() * 10000)}`;
+
+        function startTimer() {
+            const timeElement = document.getElementById('time');
+            timerInterval = setInterval(() => {
+                timer--;
+                timeElement.textContent = timer;
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    showResults();
+                }
+            }, 1000);
+        }
+
+        function loadQuiz() {
+            if (currentQuestionIndex >= quizData.length) {
+                showResults();
+                return;
+            }
+
+            const quizElement = document.getElementById('quiz');
+            quizElement.innerHTML = '';
+
+            const currentQuestion = quizData[currentQuestionIndex];
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+            questionElement.innerText = currentQuestion.question;
+            quizElement.appendChild(questionElement);
+
+            const answersElement = document.createElement('div');
+            answersElement.classList.add('answers');
+            for (const option in currentQuestion) {
+                if (option === 'question' || option === 'correct') continue;
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.value = option;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(currentQuestion[option]));
+                answersElement.appendChild(label);
+            }
+            quizElement.appendChild(answersElement);
+
+            document.getElementById('next').style.display = 'block';
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `<h2>النتيجة: ${score}/${quizData.length}</h2>`;
+
+            const correctList = document.createElement('ul');
+            correctList.innerHTML = `<h3>الإجابات الصحيحة:</h3>`;
+            const incorrectList = document.createElement('ul');
+            incorrectList.innerHTML = `<h3>الإجابات الخاطئة:</h3>`;
+
+            quizData.forEach((question, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerText = question.question;
+                if (question.correct === question.userAnswer) {
+                    correctList.appendChild(listItem);
+                } else {
+                    incorrectList.appendChild(listItem);
+                }
+            });
+
+            quizContainer.appendChild(correctList);
+            quizContainer.appendChild(incorrectList);
+
+            document.getElementById('test-id').innerHTML = `معرف الاختبار: ${quizID}`;
+        }
+
+        function handleSubmit() {
+            const answers = document.querySelectorAll('input[name="answer"]');
+            let selectedAnswer;
+            answers.forEach((answer) => {
+                if (answer.checked) {
+                    selectedAnswer = answer.value;
+                }
+            });
+
+            if (!selectedAnswer) {
+                document.getElementById('error-message').innerText = 'يرجى اختيار إجابة قبل المتابعة.';
+                return;
+            } else {
+                document.getElementById('error-message').innerText = '';
+            }
+
+            quizData[currentQuestionIndex].userAnswer = selectedAnswer;
+            if (selectedAnswer === quizData[currentQuestionIndex].correct) {
+                score++;
+                correctAnswers++;
+            } else {
+                incorrectAnswers++;
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuiz();
+            } else {
+                document.getElementById('next').style.display = 'none';
+                document.getElementById('submit').style.display = 'block';
+            }
+        }
+
+        document.getElementById('next').addEventListener('click', handleSubmit);
+        document.getElementById('submit').addEventListener('click', showResults);
+
+        loadQuiz();
+        startTimer();
+    </script>
+</body>
+</html>
